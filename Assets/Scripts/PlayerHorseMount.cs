@@ -26,6 +26,8 @@ public class PlayerHorseMount : MonoBehaviour
 
     private bool isMounted;
 
+    public AudioSource audioS;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -79,6 +81,7 @@ public class PlayerHorseMount : MonoBehaviour
         transform.SetParent(mountBone);
         transform.localPosition = mountedLocalPosition;
         transform.localRotation = Quaternion.Euler(mountedLocalRotation);
+        GetComponent<AudioSource>().Play();
     }
 
 
@@ -97,6 +100,7 @@ public class PlayerHorseMount : MonoBehaviour
 
         currentHorse.SetMounted(false);
         currentHorse = null;
+        GetComponent<AudioSource>().Stop();
     }
 
     // ---------------- INPUT BRIDGE ----------------
