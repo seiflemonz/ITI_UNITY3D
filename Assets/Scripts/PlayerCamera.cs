@@ -27,10 +27,11 @@ public class PlayerCamera : MonoBehaviour
     private float pitch;
     private bool isFirstPerson = false;
 
+    public PauseManager paused;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
 
         var playerMap = inputActions.FindActionMap("Player");
 
@@ -54,6 +55,16 @@ public class PlayerCamera : MonoBehaviour
     {
         ReadLookInput();
         HandleViewSwitch();
+        if(!paused.isPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void LateUpdate()
